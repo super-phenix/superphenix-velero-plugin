@@ -6,6 +6,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	u "github.com/super-phenix/superphenix-velero-plugin/pkg/util"
 	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
 	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -69,7 +70,22 @@ func (v *VMBackupItemAction) Execute(item runtime.Unstructured, backup *velerov1
 		}
 	}
 
+	// Retrieve the annotations to persist the MAC/IPs of the VM
+	annotations, err := u.GetKubeovnAnnotationsForVM(vm)
+	if err != nil {
+		return nil, nil, errors.WithStack(err)
+	}
+
+	// Copy the annotations to the VM
+	if vm.Spec.Template.ObjectMeta.Annotations == nil {
+		vm.Spec.Template.ObjectMeta.Annotations = make(map[string]string)
+	}
+	for k, v := range annotations {
+		vm.Spec.Template.ObjectMeta.Annotations[k] = v
+	}
+
 	vmUnstructured, err := runtime.DefaultUnstructuredConverter.ToUnstructured(vm)
+
 	if err != nil {
 		return nil, nil, errors.WithStack(err)
 	}
