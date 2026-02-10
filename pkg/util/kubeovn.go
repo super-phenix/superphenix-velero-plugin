@@ -16,7 +16,7 @@ import (
 const (
 	defaultNetworkAnnotation = "ovn.kubernetes.io"
 	defaultNetworkPattern    = "%s.%s"
-	nadNetworkPattern        = "%s.%s.%s.%s"
+	nadNetworkPattern        = "%s.%s.%s.%s.ovn"
 )
 
 type KubeOvnClient interface {
@@ -58,7 +58,7 @@ func GetIPForVM(nadAnnotation, vmName, vmNamespace string) (*kubeovnv1.IP, error
 	// Retrieve the IP custom resource for that interface/VM
 	ip, err := client.KubeovnV1().IPs().Get(context.Background(), ipName, v1.GetOptions{})
 	if err != nil {
-		return nil, fmt.Errorf("failed to retrieve the IP custom resource for vm %s/%s: %w", vmNamespace, vmName, err)
+		return nil, fmt.Errorf("failed to retrieve the IP custom resource for VM %s/%s: %w", vmNamespace, vmName, err)
 	}
 
 	return ip, nil

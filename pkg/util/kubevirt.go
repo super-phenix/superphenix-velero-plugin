@@ -33,7 +33,7 @@ func GetKubeovnAnnotationsForVM(vm *v1.VirtualMachine) (map[string]string, error
 func GetNetInfoForVm(vm *v1.VirtualMachine) ([]NetInfo, error) {
 	ips, nads, err := GetIPsForVM(vm)
 	if err != nil {
-		return nil, fmt.Errorf("failed to retrieve IP CRs for VM %s/%s", vm.Namespace, vm.Name)
+		return nil, fmt.Errorf("failed to retrieve IP CRs for VM %s/%s: %w", vm.Namespace, vm.Name, err)
 	}
 
 	var netInfos []NetInfo
