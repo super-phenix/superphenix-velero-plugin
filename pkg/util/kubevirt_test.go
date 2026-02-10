@@ -114,11 +114,11 @@ func TestGetIPsForVM(t *testing.T) {
 				},
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.test-nad.test-ns",
+						Name: "test-vm.test-ns.test-nad.test-ns.ovn",
 					},
 				},
 			},
-			wantIPNames: []string{"test-vm.test-ns.test-nad.test-ns", "test-vm.test-ns"},
+			wantIPNames: []string{"test-vm.test-ns.test-nad.test-ns.ovn", "test-vm.test-ns"},
 			wantNads:    []string{"test-nad.test-ns.ovn.kubernetes.io", defaultNetworkAnnotation},
 			wantErr:     false,
 		},
@@ -150,11 +150,11 @@ func TestGetIPsForVM(t *testing.T) {
 			existingIPs: []*kubeovnv1.IP{
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.test-nad.test-ns",
+						Name: "test-vm.test-ns.test-nad.test-ns.ovn",
 					},
 				},
 			},
-			wantIPNames: []string{"test-vm.test-ns.test-nad.test-ns"},
+			wantIPNames: []string{"test-vm.test-ns.test-nad.test-ns.ovn"},
 			wantNads:    []string{"test-nad.test-ns.ovn.kubernetes.io"},
 			wantErr:     false,
 		},
@@ -193,12 +193,12 @@ func TestGetIPsForVM(t *testing.T) {
 			existingIPs: []*kubeovnv1.IP{
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad1.test-ns",
+						Name: "test-vm.test-ns.nad1.test-ns.ovn",
 					},
 				},
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad2.test-ns",
+						Name: "test-vm.test-ns.nad2.test-ns.ovn",
 					},
 				},
 				{
@@ -207,7 +207,7 @@ func TestGetIPsForVM(t *testing.T) {
 					},
 				},
 			},
-			wantIPNames: []string{"test-vm.test-ns.nad1.test-ns", "test-vm.test-ns.nad2.test-ns", "test-vm.test-ns"},
+			wantIPNames: []string{"test-vm.test-ns.nad1.test-ns.ovn", "test-vm.test-ns.nad2.test-ns.ovn", "test-vm.test-ns"},
 			wantNads: []string{
 				"nad1.test-ns.ovn.kubernetes.io",
 				"nad2.test-ns.ovn.kubernetes.io",
@@ -243,11 +243,11 @@ func TestGetIPsForVM(t *testing.T) {
 			existingIPs: []*kubeovnv1.IP{
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad-primary.test-ns",
+						Name: "test-vm.test-ns.nad-primary.test-ns.ovn",
 					},
 				},
 			},
-			wantIPNames: []string{"test-vm.test-ns.nad-primary.test-ns"},
+			wantIPNames: []string{"test-vm.test-ns.nad-primary.test-ns.ovn"},
 			wantNads:    []string{"nad-primary.test-ns.ovn.kubernetes.io"},
 			wantErr:     false,
 		},
@@ -283,11 +283,11 @@ func TestGetIPsForVM(t *testing.T) {
 				},
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad-secondary.test-ns",
+						Name: "test-vm.test-ns.nad-secondary.test-ns.ovn",
 					},
 				},
 			},
-			wantIPNames: []string{"test-vm.test-ns.nad-secondary.test-ns", "test-vm.test-ns"},
+			wantIPNames: []string{"test-vm.test-ns.nad-secondary.test-ns.ovn", "test-vm.test-ns"},
 			wantNads:    []string{"nad-secondary.test-ns.ovn.kubernetes.io", defaultNetworkAnnotation},
 			wantErr:     false,
 		},
@@ -450,7 +450,7 @@ func TestGetNetInfoForVm(t *testing.T) {
 			existingIPs: []*kubeovnv1.IP{
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.test-nad.test-ns",
+						Name: "test-vm.test-ns.test-nad.test-ns.ovn",
 					},
 					Spec: kubeovnv1.IPSpec{
 						V4IPAddress: "192.168.1.1",
@@ -620,7 +620,7 @@ func TestGetKubeovnAnnotationsForVM(t *testing.T) {
 				},
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.test-nad.test-ns",
+						Name: "test-vm.test-ns.test-nad.test-ns.ovn",
 					},
 					Spec: kubeovnv1.IPSpec{
 						V4IPAddress: "10.0.0.2",

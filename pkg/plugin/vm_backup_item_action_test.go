@@ -189,7 +189,7 @@ func TestExecute(t *testing.T) {
 			existingIPs: []*v1.IP{
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad1.test-ns",
+						Name: "test-vm.test-ns.nad1.test-ns.ovn",
 					},
 					Spec: v1.IPSpec{
 						V4IPAddress: "10.0.0.11",
@@ -198,7 +198,7 @@ func TestExecute(t *testing.T) {
 				},
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad2.test-ns",
+						Name: "test-vm.test-ns.nad2.test-ns.ovn",
 					},
 					Spec: v1.IPSpec{
 						V4IPAddress: "10.0.0.22",
@@ -258,7 +258,7 @@ func TestExecute(t *testing.T) {
 			existingIPs: []*v1.IP{
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad-primary.test-ns",
+						Name: "test-vm.test-ns.nad-primary.test-ns.ovn",
 					},
 					Spec: v1.IPSpec{
 						V4IPAddress: "10.0.0.33",
@@ -313,7 +313,7 @@ func TestExecute(t *testing.T) {
 				},
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.nad-secondary.test-ns",
+						Name: "test-vm.test-ns.nad-secondary.test-ns.ovn",
 					},
 					Spec: v1.IPSpec{
 						V4IPAddress: "10.0.0.44",
