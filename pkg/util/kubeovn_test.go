@@ -76,7 +76,7 @@ func TestGetIPNameForNADNetwork(t *testing.T) {
 			nadAnnotation: "test-nad.test-ns.ovn.kubernetes.io",
 			vmName:        "test-vm",
 			vmNamespace:   "test-ns",
-			want:          "test-vm.test-ns.test-nad.test-ns",
+			want:          "test-vm.test-ns.test-nad.test-ns.ovn",
 			wantErr:       false,
 		},
 		{
@@ -165,7 +165,7 @@ func TestGetIPCRNameForVM(t *testing.T) {
 			nadAnnotation: "test-nad.test-ns.ovn.kubernetes.io",
 			vmName:        "test-vm",
 			vmNamespace:   "test-ns",
-			want:          "test-vm.test-ns.test-nad.test-ns",
+			want:          "test-vm.test-ns.test-nad.test-ns.ovn",
 			wantErr:       false,
 		},
 		{
@@ -246,11 +246,11 @@ func TestGetIPForVM(t *testing.T) {
 			existingIPs: []*kubeovnv1.IP{
 				{
 					ObjectMeta: metav1.ObjectMeta{
-						Name: "test-vm.test-ns.test-nad.test-ns",
+						Name: "test-vm.test-ns.test-nad.test-ns.ovn",
 					},
 				},
 			},
-			wantIPName: "test-vm.test-ns.test-nad.test-ns",
+			wantIPName: "test-vm.test-ns.test-nad.test-ns.ovn",
 			wantErr:    false,
 		},
 		{
