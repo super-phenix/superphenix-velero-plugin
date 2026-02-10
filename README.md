@@ -33,7 +33,24 @@ It then fetches these `IP` resources and adds the following annotations to the V
 
 To use this plugin, you need to add it to your Velero installation.
 
-TODO
+For example, using the Velero Helm chart:
+```yaml
+initContainers:
+  # Plugin to connect to S3 buckets
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.12.1
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+  # Plugin to handle SPX specific backup actions
+  - name: velero-plugin-for-superphenix
+    image: [URL]
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+```
 
 ## Local Development
 
@@ -42,9 +59,8 @@ TODO
 - Go 1.25.6 or later
 - Access to a Kubernetes cluster with KubeVirt and Kube-OVN (for testing)
 
-> [!INFO]
+> [!NOTE]
 > You cannot run the plugin outside of Velero, it needs to be imported as a Velero plugin.
-
 
 ### Testing
 
