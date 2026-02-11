@@ -45,7 +45,7 @@ initContainers:
         name: plugins
   # Plugin to handle SPX specific backup actions
   - name: velero-plugin-for-superphenix
-    image: [URL]
+    image: ghcr.io/super-phenix/superphenix-velero-plugin:latest
     imagePullPolicy: IfNotPresent
     volumeMounts:
       - mountPath: /target
